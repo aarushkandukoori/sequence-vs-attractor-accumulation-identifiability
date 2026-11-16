@@ -8,7 +8,7 @@
 
 ## Abstract
 
-Neural circuit models of evidence accumulation range from integrator-like attractor dynamics to choice-selective sequences of time-localized activity. Both families can produce similar trial-averaged activity, and two-photon calcium imaging adds slow indicator kinetics and noise that further blur the difference. We propose an early-stage framework, and an accompanying synthetic-data benchmark, for asking when the two mechanisms can be told apart from calcium-imaging-like recordings. The framework has three parts: a one-parameter family of generative models that interpolates between a ramping (attractor-like) code and a sequence-like code, a forward model from latent spikes to fluorescence, and a cross-temporal decoder-generalization statistic as a candidate discriminator. We describe the protocol and planned baselines but report no results, and we use only clearly labeled synthetic data. We are seeking expert feedback on whether the question and the generative assumptions are sensible. AI tools (Claude) were used for literature synthesis, ideation, and draft preparation, and the authors reviewed and take responsibility for all content.
+Neural circuit models of evidence accumulation range from integrator-like attractor dynamics to choice-selective sequences of time-localized activity. Both families can produce similar trial-averaged activity, and two-photon calcium imaging adds slow indicator kinetics and noise that further blur the difference. We propose an early-stage framework, and an accompanying synthetic-data benchmark, for asking when the two mechanisms can be told apart from calcium-imaging-like recordings. The framework has three parts: a one-parameter family of generative models that interpolates between a ramping (attractor-like) code and a sequence-like code, a forward model from latent spikes to fluorescence, and a cross-temporal decoder-generalization statistic as a candidate discriminator. We describe the protocol and planned baselines but report no results, and we use only clearly labeled synthetic data. We are seeking expert feedback on whether the question and the generative assumptions are sensible. AI tools (Claude) were used for literature synthesis, ideation, and draft preparation, and an AI review checked the draft before release, and the authors take responsibility for all content.
 
 ## Introduction & Motivation
 
@@ -87,7 +87,7 @@ All data in the proposed repository is **synthetic and clearly labeled as such**
 For each configuration, we ask whether the two generative families (ramp-dominated vs. sequence-dominated) can be classified above chance, and how this depends on recording parameters. We plan to report this as a phase diagram over parameters, but only after the experiments are run.
 
 ### AI Assistance Disclosure
-AI tools (Claude) were used for literature synthesis, ideation, and draft preparation of this proposal. The authors reviewed all content and take responsibility for it, including any errors.
+AI tools (Claude) were used for literature synthesis, ideation, and draft preparation of this proposal. An AI review checked the draft before release, and the authors take responsibility for it, including any errors.
 
 ## Planned Evaluation & Baselines
 
