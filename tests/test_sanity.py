@@ -4,6 +4,7 @@ import pytest
 
 from src.analysis.decoders import cross_temporal_r2
 from src.analysis.metrics import generalization_index
+from src.experiments.grid import GridSpec, iter_grid
 from src.generators.dataset import SimParams, generate, load_synthetic, save_synthetic
 
 
@@ -39,3 +40,9 @@ def test_G_low_and_diagonal_for_noiseless_sequence():
     idx = np.arange(T)
     lag = np.abs(idx[:, None] - idx[None, :])
     assert np.nanmean(A[lag <= 1]) > np.nanmean(A[lag >= T // 4])
+
+
+def test_grid_varies_field_width():
+    spec = GridSpec(rho=(0.0, 1.0), sigma=(1.0, 4.0), n_seeds=1)
+    cells = [(p.rho, p.sigma) for p, _ in iter_grid(spec)]
+    assert cells == [(0.0, 1.0), (0.0, 4.0), (1.0, 1.0), (1.0, 4.0)]

@@ -18,6 +18,7 @@ class GridSpec:
     n_trials: tuple = (200,)
     tau_ca: tuple = (0.5,)
     noise_sd: tuple = (0.1,)
+    sigma: tuple = (2.0,)  # firing-field (bump) width in bins
     n_seeds: int = 2
     base_seed: int = 0
 
@@ -25,9 +26,10 @@ class GridSpec:
 def iter_grid(spec, base=None):
     '''Yield (SimParams, seed) for every grid cell and seed.'''
     base = base or SimParams()
-    for rho, N, nt, tc, ns in product(spec.rho, spec.N, spec.n_trials, spec.tau_ca, spec.noise_sd):
+    for rho, N, nt, tc, ns, sg in product(spec.rho, spec.N, spec.n_trials, spec.tau_ca,
+                                          spec.noise_sd, spec.sigma):
         for s in range(spec.n_seeds):
-            p = replace(base, rho=rho, N=N, n_trials=nt, tau_ca=tc, noise_sd=ns)
+            p = replace(base, rho=rho, N=N, n_trials=nt, tau_ca=tc, noise_sd=ns, sigma=sg)
             yield p, spec.base_seed + s
 
 
@@ -37,6 +39,7 @@ def run_grid(spec, observation='fluorescence'):
         ds = generate(p, seed)
         A = cross_temporal_r2(ds.observed(observation), ds.x)
         rows.append({'rho': p.rho, 'N': p.N, 'n_trials': p.n_trials, 'tau_ca': p.tau_ca,
-                     'noise_sd': p.noise_sd, 'seed': seed, 'observation': observation,
+                     'noise_sd': p.noise_sd, 'sigma': p.sigma, 'seed': seed,
+                     'observation': observation,
                      'G': generalization_index(A), 'synthetic': True})
     return rows
